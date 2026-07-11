@@ -122,3 +122,4 @@ Issues and pull requests are welcome — especially if you find a tweak that's u
 ## License
 
 [MIT](LICENSE) © MilcioSSQ
+<!-- v1.0.1 -->
