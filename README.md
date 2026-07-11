@@ -75,6 +75,23 @@ The backup lives at:
 
 ---
 
+## Bonus: `Autostart-Clean.ps1`
+
+A companion script that **automatically disables unnecessary startup apps**
+(OneDrive, updaters, tray tools, ...) while **protecting the ones you actually
+want at boot** — GPU drivers, audio, mouse/keyboard software (Logitech, Razer,
+SteelSeries, ...) and your antivirus. Backup + restore included, nothing gets
+deleted.
+
+```powershell
+powershell -ExecutionPolicy Bypass -File .\Autostart-Clean.ps1
+```
+
+Pick `[1] Clean` to disable the junk (it shows you exactly what it keeps first),
+or `[3] Restore` to undo.
+
+---
+
 ## Does this actually increase FPS?
 
 Honestly? **It mostly reduces input lag and background load, not raw FPS.** The biggest real FPS gains come from things a script can't do for you:

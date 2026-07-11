@@ -122,6 +122,20 @@ function Set-MouseTweaks {
 }
 
 # ===========================================================================
+# TWEAK: Keyboard - fastest key repeat (menu / WASD responsiveness)
+# ===========================================================================
+function Set-KeyboardTweaks {
+    Section 'Keyboard - faster key repeat (WASD / menus)'
+    # shortest repeat delay (0) + fastest repeat rate (31)
+    Set-Reg 'HKCU:\Control Panel\Keyboard' 'KeyboardDelay' '0'  String
+    Set-Reg 'HKCU:\Control Panel\Keyboard' 'KeyboardSpeed' '31' String
+    Note 'This speeds up key-repeat (menus, typing, held WASD in menus).'
+    Note 'Note: games read key state directly, so raw in-game input latency'
+    Note 'is unchanged - this is about responsiveness feel, not a magic fix.'
+    Save-Backup
+}
+
+# ===========================================================================
 # TWEAK: Latency - power plan, GPU scheduling, MMCSS game priority
 # ===========================================================================
 function Set-LatencyTweaks {
@@ -336,6 +350,7 @@ function Restore-All {
 # ===========================================================================
 function Invoke-Recommended {
     Set-MouseTweaks
+    Set-KeyboardTweaks
     Set-LatencyTweaks
     Set-BackgroundTweaks
     Section 'Done'
@@ -356,25 +371,27 @@ function Show-Header {
 
 while ($true) {
     Show-Header
-    Write-Host "  [1] Apply recommended (mouse + latency + background)" -ForegroundColor Cyan
+    Write-Host "  [1] Apply recommended (mouse + keyboard + latency + background)" -ForegroundColor Cyan
     Write-Host "  [2] Mouse       - raw input, no acceleration"          -ForegroundColor Gray
-    Write-Host "  [3] Latency     - power plan, GPU scheduling, MMCSS"   -ForegroundColor Gray
-    Write-Host "  [4] Background  - Game DVR + Store apps off"           -ForegroundColor Gray
-    Write-Host "  [5] Autostart   - review & disable startup apps"       -ForegroundColor Gray
-    Write-Host "  [6] Network     - safe, reversible (small effect)"     -ForegroundColor Gray
-    Write-Host "  [7] GPU driver  - detect & open official download"     -ForegroundColor Gray
-    Write-Host "  [8] Restore     - undo everything"                     -ForegroundColor Yellow
+    Write-Host "  [3] Keyboard    - fastest key repeat (WASD / menus)"   -ForegroundColor Gray
+    Write-Host "  [4] Latency     - power plan, GPU scheduling, MMCSS"   -ForegroundColor Gray
+    Write-Host "  [5] Background  - Game DVR + Store apps off"           -ForegroundColor Gray
+    Write-Host "  [6] Autostart   - review & disable startup apps"       -ForegroundColor Gray
+    Write-Host "  [7] Network     - safe, reversible (small effect)"     -ForegroundColor Gray
+    Write-Host "  [8] GPU driver  - detect & open official download"     -ForegroundColor Gray
+    Write-Host "  [9] Restore     - undo everything"                     -ForegroundColor Yellow
     Write-Host "  [0] Exit"                                              -ForegroundColor DarkGray
     Write-Host "  --------------------------------------------------------"
     switch (Read-Host "  Select") {
         '1' { Invoke-Recommended;      Read-Host "`n  Enter for menu" }
         '2' { Set-MouseTweaks;         Read-Host "`n  Enter for menu" }
-        '3' { Set-LatencyTweaks;       Read-Host "`n  Enter for menu" }
-        '4' { Set-BackgroundTweaks;    Read-Host "`n  Enter for menu" }
-        '5' { Invoke-AutostartManager; Read-Host "`n  Enter for menu" }
-        '6' { Set-NetworkTweaks;       Read-Host "`n  Enter for menu" }
-        '7' { Open-GpuDriverPage;      Read-Host "`n  Enter for menu" }
-        '8' { Restore-All;             Read-Host "`n  Enter for menu" }
+        '3' { Set-KeyboardTweaks;      Read-Host "`n  Enter for menu" }
+        '4' { Set-LatencyTweaks;       Read-Host "`n  Enter for menu" }
+        '5' { Set-BackgroundTweaks;    Read-Host "`n  Enter for menu" }
+        '6' { Invoke-AutostartManager; Read-Host "`n  Enter for menu" }
+        '7' { Set-NetworkTweaks;       Read-Host "`n  Enter for menu" }
+        '8' { Open-GpuDriverPage;      Read-Host "`n  Enter for menu" }
+        '9' { Restore-All;             Read-Host "`n  Enter for menu" }
         '0' { break }
         default { Warn 'Pick a number from the menu.' }
     }
