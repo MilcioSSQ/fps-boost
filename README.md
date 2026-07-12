@@ -19,7 +19,7 @@ Most "FPS boost" scripts you find online either do nothing, break something, or 
 - **Readable.** It's a single, commented PowerShell script. Read it before you run it.
  
 ---
-
+ 
 ## Disclaimer
 
 This script changes Windows registry settings, your power plan, and startup entries. All changes are backed up and can be undone from the menu (`[8] Restore`), but **use it at your own risk**. Reboot after applying so everything takes effect.
