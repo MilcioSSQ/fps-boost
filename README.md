@@ -3,7 +3,7 @@
 </p>
 
 # FPS Boost
-
+ 
 A small, **transparent** Windows gaming optimizer that reduces input latency and background noise — without the usual "tweaker" nonsense.
 
 ![Platform](https://img.shields.io/badge/platform-Windows%2010%20%2F%2011-0078D6?logo=windows&logoColor=white)
