@@ -17,7 +17,7 @@ Most "FPS boost" scripts you find online either do nothing, break something, or 
 - **No magic, no lies.** It won't claim to "update your GPU driver" — it detects your GPU and opens the *official* download page so you install it yourself.
 - **It only touches safe things.** No core Windows services are disabled. Desktop apps (Steam, Discord, OBS) are never affected.
 - **Readable.** It's a single, commented PowerShell script. Read it before you run it.
-
+ 
 ---
 
 ## Disclaimer
