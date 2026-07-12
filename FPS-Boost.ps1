@@ -327,6 +327,22 @@ function Restore-All {
 
     if ($b.power) { powercfg /setactive $b.power 2>$null; Ok 'Power plan restored' }
 
+    # Restore adapter bindings
+    if ($b.ContainsKey('ADAPTER')) {
+        foreach ($a in $b['ADAPTER']) {
+            $map = @{
+                ms_tcpip6 = $a.ms_tcpip6; ms_lldp   = $a.ms_lldp
+                ms_lltdio = $a.ms_lltdio; ms_rspndr = $a.ms_rspndr
+                ms_pacer  = $a.ms_pacer;  ms_implat  = $a.ms_implat
+            }
+            foreach ($comp in $map.Keys) {
+                if ($map[$comp]) { Enable-NetAdapterBinding  -Name $a.name -ComponentID $comp -ErrorAction SilentlyContinue }
+                else             { Disable-NetAdapterBinding -Name $a.name -ComponentID $comp -ErrorAction SilentlyContinue }
+            }
+            Ok "Adapter bindings restored: $($a.name)"
+        }
+    }
+
     foreach ($a in @($b.autostart)) {
         try {
             if ($a.type -eq 'reg') {
@@ -378,8 +394,9 @@ while ($true) {
     Write-Host "  [5] Background  - Game DVR + Store apps off"           -ForegroundColor Gray
     Write-Host "  [6] Autostart   - review & disable startup apps"       -ForegroundColor Gray
     Write-Host "  [7] Network     - safe, reversible (small effect)"     -ForegroundColor Gray
-    Write-Host "  [8] GPU driver  - detect & open official download"     -ForegroundColor Gray
-    Write-Host "  [9] Restore     - undo everything"                     -ForegroundColor Yellow
+    Write-Host "  [8] Adapter     - strip unused protocols (IPv6, LLDP, QoS)" -ForegroundColor Gray
+    Write-Host "  [9] GPU driver  - detect & open official download"     -ForegroundColor Gray
+    Write-Host "  [10] Restore    - undo everything"                     -ForegroundColor Yellow
     Write-Host "  [0] Exit"                                              -ForegroundColor DarkGray
     Write-Host "  --------------------------------------------------------"
     switch (Read-Host "  Select") {
@@ -390,8 +407,9 @@ while ($true) {
         '5' { Set-BackgroundTweaks;    Read-Host "`n  Enter for menu" }
         '6' { Invoke-AutostartManager; Read-Host "`n  Enter for menu" }
         '7' { Set-NetworkTweaks;       Read-Host "`n  Enter for menu" }
-        '8' { Open-GpuDriverPage;      Read-Host "`n  Enter for menu" }
-        '9' { Restore-All;             Read-Host "`n  Enter for menu" }
+        '8' { Set-AdapterTweaks;       Read-Host "`n  Enter for menu" }
+        '9' { Open-GpuDriverPage;      Read-Host "`n  Enter for menu" }
+        '10'{ Restore-All;             Read-Host "`n  Enter for menu" }
         '0' { break }
         default { Warn 'Pick a number from the menu.' }
     }
