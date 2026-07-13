@@ -25,7 +25,7 @@ Most "FPS boost" scripts you find online either do nothing, break something, or 
 This script changes Windows registry settings, your power plan, and startup entries. All changes are backed up and can be undone from the menu (`[8] Restore`), but **use it at your own risk**. Reboot after applying so everything takes effect.
 
 --- 
- 
+  
 ## Features
 
 | Module | What it does |
