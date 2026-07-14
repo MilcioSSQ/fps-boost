@@ -1,124 +1,275 @@
-<p align="center">
-  <img src="screenshots/banner.png" alt="FPS Boost" width="100%" />
-</p>
-  
-# FPS Boost
- 
-A small, **transparent** Windows gaming optimizer that reduces input latency and background noise — without the usual "tweaker" nonsense.
+# FPS Boost Dashboard
 
-![Platform](https://img.shields.io/badge/platform-Windows%2010%20%2F%2011-0078D6?logo=windows&logoColor=white)
-![PowerShell](https://img.shields.io/badge/PowerShell-5.1%2B-5391FE?logo=powershell&logoColor=white)
-![License](https://img.shields.io/badge/license-MIT-green)
-![Reversible](https://img.shields.io/badge/every%20change-reversible-brightgreen)
+A **high-performance Electron + React dashboard** for the FPS Boost PowerShell gaming optimizer. Monitor your gaming performance in real-time, detect active games, and apply gaming tweaks with one click.
 
-Most "FPS boost" scripts you find online either do nothing, break something, or ship a shady binary. This one is different on purpose:
-
-- **Everything is reversible.** Before touching anything, the original value is saved to a backup file. One menu option puts your system back exactly as it was.
-- **No magic, no lies.** It won't claim to "update your GPU driver" — it detects your GPU and opens the *official* download page so you install it yourself.
-- **It only touches safe things.** No core Windows services are disabled. Desktop apps (Steam, Discord, OBS) are never affected.
-- **Readable.** It's a single, commented PowerShell script. Read it before you run it.
- 
----
- 
-## Disclaimer
-
-This script changes Windows registry settings, your power plan, and startup entries. All changes are backed up and can be undone from the menu (`[8] Restore`), but **use it at your own risk**. Reboot after applying so everything takes effect.
-
---- 
-  
-## Features
-
-| Module | What it does |
-| --- | --- |
-| **Mouse** | Disables mouse acceleration ("Enhance pointer precision") and sets 1:1 pointer speed for consistent, raw aim. |
-| **Latency** | Switches to the High-performance power plan, enables Hardware-accelerated GPU Scheduling, keeps Game Mode on, and gives the MMCSS *Games* task higher priority. |
-| **Background** | Turns off Game DVR / background recording and stops Store (UWP) apps from running in the background. Desktop apps are untouched. |
-| **Autostart** | Lists every startup entry and lets you disable the ones you don't need (updaters, launchers, tray tools). Disabled entries are moved aside, not deleted. |
-| **Network** | A couple of safe, reversible options (removes the multimedia network throttle, disables Nagle on active adapters). Honest note: the effect is small — a LAN cable helps more. |
-| **GPU driver** | Detects your GPU vendor and opens the official NVIDIA/AMD/Intel download page, plus prints the recommended low-latency settings. |
+![Gaming Dashboard](screenshot.png)
 
 ---
 
-## Requirements
+## ⚡ Features
 
-- Windows 10 or 11
-- Windows PowerShell 5.1 (built in) or PowerShell 7+
-- Administrator rights (the script elevates itself)
+### Performance Monitoring
+- **Live CPU, GPU, RAM, VRAM, Temperature** tracking (updated every 2 seconds)
+- **Real-time FPS Counter** while gaming
+- **Color-coded health indicators** (Excellent, Good, Fair, Poor)
+- **Smooth performance graphs** with trend indicators
+
+### Game Detection
+- 🎮 **Automatic Game Detection** (Fortnite, Valorant, CS:GO, Apex, R6, OW2)
+- **Active Game Display** in header
+- **Gaming Mode Auto-Trigger** when game detected
+
+### Gaming Optimization
+- ⚡ **One-Click Gaming Mode** (applies all tweaks)
+- 🎯 **Multiple Optimization Levels** (Balanced, Aggressive, Network)
+- 🔄 **Autostart Cleaner** (removes bloatware from startup)
+- 🖱️ **Mouse Settings Monitor** (Acceleration, Sensitivity, DPI, Polling Rate)
+
+### Network & System
+- 🌐 **Network Status** (IP, Connection Type, Ping, Health)
+- ⚙️ **GPU Driver Management** (Link to official drivers)
+- 💾 **Backup & Restore** (Safe rollback of all changes)
+
+### UI/UX
+- 🎨 **Gaming-Focused Aesthetic** (Purple/Blue/Neon)
+- 📱 **Responsive Design** (Desktop, Tablet, Mobile)
+- ✨ **Smooth Animations & Transitions**
+- 🌙 **Dark Theme** optimized for gaming
 
 ---
 
-## Usage
+## 🎮 What it Does
 
-1. Download `FPS-Boost.ps1`.
-2. Open PowerShell and run:
-
-   ```powershell
-   powershell -ExecutionPolicy Bypass -File .\FPS-Boost.ps1
-   ```
-
-   Or right-click the file → **Run with PowerShell**.
-3. Approve the UAC prompt.
-4. Pick an option from the menu. `[1]` applies the recommended set; `[5]` and `[6]` (Autostart, Network) are opt-in.
-5. **Reboot** so power plan, GPU scheduling and mouse settings fully apply.
+| Feature | Description |
+|---------|-------------|
+| **Performance Monitoring** | Track CPU/GPU/RAM/Temp in real-time while gaming |
+| **Game Detection** | Detects when you start playing (Fortnite, Valorant, CS:GO, etc.) |
+| **Gaming Mode** | Applies all FPS Boost tweaks with one click |
+| **Mouse Settings** | Shows raw input, acceleration, DPI, polling rate |
+| **Network Status** | Displays IP, connection type, ping, and health |
+| **GPU Driver Manager** | Links to official NVIDIA/AMD/Intel driver downloads |
+| **Autostart Cleaner** | Removes bloatware and startup programs |
+| **Backup & Restore** | Safe rollback of all system changes |
 
 ---
 
-## Restoring
+## 🚀 Quick Start
 
-Run the script again and choose **`[8] Restore`**. It reads the backup and puts every changed value back to how it was — including your original power plan and any startup entries you disabled. Then reboot.
+### Prerequisites
+- Node.js 14+
+- npm or yarn
+- Windows 10/11
+- PowerShell 5.1+
+- FPS Boost repo in parent directory
 
-The backup lives at:
+### Installation
 
+```bash
+# Install dependencies
+npm install
+
+# Start development mode
+npm run electron-dev
+
+# Build for distribution
+npm run electron-build
+```
+
+---
+
+## 📊 Performance Metrics
+
+### Real-time Displays
+- **CPU Load** - Processor usage percentage
+- **GPU Load** - Graphics card usage
+- **RAM Usage** - System memory consumption
+- **VRAM Usage** - Video memory usage
+- **CPU Temperature** - Processor temperature in Celsius
+- **Current FPS** - Frames per second counter
+
+### Health Indicators
+```
+🟢 Excellent: 0-50% (Green)
+🟢 Good:      50-75% (Cyan)
+🟡 Fair:      75-85% (Orange)
+🔴 Poor:      85%+   (Red)
+```
+
+---
+
+## 🎯 Gaming Mode Options
+
+### Balanced (Default)
+- Mouse acceleration: Off
+- Power Plan: High Performance
+- Game DVR: Off
+- GPU Scheduling: On
+- MMCSS: Enabled
+
+### Aggressive
+- All from Balanced +
+- Background apps: Disabled
+- Autostart bloatware: Removed
+- Network optimizations: Applied
+
+### Network Only
+- Network throttle removed
+- Nagle disabled on adapters
+- Latency optimizations
+
+---
+
+## 🔧 System Requirements
+
+- **Windows 10 or 11**
+- **PowerShell 5.1+** (built-in)
+- **Administrator rights** (auto-elevated)
+- **GPU drivers** (NVIDIA/AMD/Intel) current version recommended
+
+---
+
+## 📁 Project Structure
+
+```
+fps-boost-dashboard/
+├── main.js              # Electron backend
+├── preload.js           # Security bridge
+├── index.html           # HTML shell
+├── package.json         # Dependencies
+├── README.md            # This file
+└── src/
+    ├── App.js           # React component
+    ├── App.css          # Gaming UI styling
+    └── index.js         # React entry point
+```
+
+---
+
+## 🔌 IPC Handlers
+
+The dashboard communicates with FPS Boost via these handlers:
+
+- `get-performance-stats` → CPU, GPU, RAM, VRAM, Temp, FPS, Ping
+- `detect-games` → Active games detection
+- `apply-gaming-tweaks` → Apply FPS Boost optimizations
+- `run-autostart-clean` → Clean startup programs
+- `check-backup` → Backup status
+- `get-mouse-settings` → Mouse configuration
+- `get-network-info` → Network status
+
+---
+
+## 🎨 Customization
+
+### Colors
+Edit `src/App.css`:
+```css
+Primary Pink:   #ff006e
+Accent Cyan:    #00d4ff
+Success Green:  #00ff88
+Warning Orange: #ffaa00
+```
+
+### Update Frequency
+Edit `src/App.js`:
+```javascript
+// Change refresh rate (milliseconds)
+const interval = setInterval(refreshAllData, 2000); // 2 seconds
+```
+
+### Game List
+Edit `main.js` in `detect-games`:
+```javascript
+const games = ['Fortnite', 'csgo', 'VALORANT', 'Apex', ...];
+```
+
+---
+
+## 🐛 Troubleshooting
+
+### "Module not found: react"
+```bash
+npm install
+npm install react react-dom react-icons
+```
+
+### "Port 3000 already in use"
+```bash
+npx kill-port 3000
+npm run electron-dev
+```
+
+### "PowerShell script not found"
+- Ensure FPS Boost repo is in parent directory
+- Check path in `main.js` matches your setup
+
+### Admin rights not working
+- Right-click PowerShell → Run as Administrator
+- Try running the app as admin
+
+---
+
+## 📈 Performance Tips
+
+1. **Keep GPU drivers updated** (use Dashboard link)
+2. **Close unnecessary background apps** (use Autostart Cleaner)
+3. **Monitor temperatures** (prevent thermal throttling)
+4. **Use wired network** (more stable than WiFi)
+5. **Reboot after applying** tweaks for full effect
+
+---
+
+## 🔄 Backup & Restore
+
+All changes are backed up in:
 ```
 %LOCALAPPDATA%\fps-boost-backup.json
 ```
 
+**To restore:**
+1. Click "🔄 Restore Original" button in dashboard
+2. Reboot system
+3. All changes reverted to original state
+
 ---
 
-## Bonus: `Autostart-Clean.ps1`
+## 🚀 Building & Distribution
 
-A companion script that **automatically disables unnecessary startup apps**
-(OneDrive, updaters, tray tools, ...) while **protecting the ones you actually
-want at boot** — GPU drivers, audio, mouse/keyboard software (Logitech, Razer,
-SteelSeries, ...) and your antivirus. Backup + restore included, nothing gets
-deleted.
-
-```powershell
-powershell -ExecutionPolicy Bypass -File .\Autostart-Clean.ps1
+### Create .exe Installer
+```bash
+npm run electron-build
 ```
 
-Pick `[1] Clean` to disable the junk (it shows you exactly what it keeps first),
-or `[3] Restore` to undo.
+Creates:
+- `dist/FPS Boost Dashboard Setup 1.0.0.exe` (Installer)
+- `dist/FPS Boost Dashboard 1.0.0.exe` (Portable)
+
+### Sign & Distribute
+- Distribute the portable `.exe` directly
+- Or use NSIS installer for professional deployment
 
 ---
 
-## Does this actually increase FPS?
+## 📝 License
 
-Honestly? **It mostly reduces input lag and background load, not raw FPS.** The biggest real FPS gains come from things a script can't do for you:
-
-- Up-to-date GPU drivers (use `[7]` to grab the official ones)
-- Correct in-game settings and resolution
-- Making sure your monitor runs at its full refresh rate (e.g. 144 Hz, not 60 Hz)
-- Good temperatures (thermal throttling = stutter)
-
-This tool makes your system feel snappier and more consistent. It's not a miracle button — anything that promises +100 FPS is lying.
+MIT © MilcioSSQ
 
 ---
 
-## Screenshots
+## 🎮 Credits
 
-The menu (every option is reversible via `[8] Restore`):
+Dashboard built for [FPS Boost](../fps-boost-main) by **MilcioSSQ**
 
-![Menu](screenshots/menu.png)
-
-<!-- Want a real capture instead? Run the tool and drop a fresh screenshot here as menu.png. -->
+Integrates with PowerShell gaming optimizer for maximum performance.
 
 ---
 
-## Contributing
+## 💬 Support
 
-Issues and pull requests are welcome — especially if you find a tweak that's unsafe or has no measurable effect, so it can be removed.
+- Report issues on GitHub
+- Check `SETUP.md` for detailed setup
+- Review `QUICK-UPLOAD.md` for upload instructions
 
-## License
+---
 
-[MIT](LICENSE) © MilcioSSQ
+**Optimize your gaming. Monitor your performance. Dominate your games.** 🎮⚡
