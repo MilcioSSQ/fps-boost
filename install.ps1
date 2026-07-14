@@ -6,21 +6,7 @@
 
 $ErrorActionPreference = 'Stop'
 
-# ── Admin check & elevation ──────────────────────────────────────────────────
-$principal = [Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]::GetCurrent()
-if (-not $principal.IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)) {
-    Write-Host ""
-    Write-Host "  FPS Boost needs Administrator privileges." -ForegroundColor Yellow
-    Write-Host "  Elevating..." -ForegroundColor DarkGray
-    $tempScript = Join-Path $env:TEMP 'fps-boost-install.ps1'
-    $scriptUrl  = 'https://raw.githubusercontent.com/MilcioSSQ/fps-boost/main/install.ps1'
-    Invoke-RestMethod $scriptUrl -OutFile $tempScript
-    Start-Process powershell.exe -Verb RunAs -ArgumentList `
-        '-NoProfile', '-ExecutionPolicy', 'Bypass', '-File', "`"$tempScript`""
-    exit
-}
-
-# ── Download & extract ───────────────────────────────────────────────────────
+# ── Download & extract (works without admin) ─────────────────────────────────
 $repo    = 'MilcioSSQ/fps-boost'
 $branch  = 'main'
 $zipUrl  = "https://github.com/$repo/archive/refs/heads/$branch.zip"
@@ -48,12 +34,14 @@ if (-not $folder) {
 }
 
 Write-Host "  Starting FPS Boost..." -ForegroundColor Green
-Write-Host ""
 
-# ── Launch the real script ───────────────────────────────────────────────────
+# ── Launch in a clean, elevated PowerShell process ───────────────────────────
 $mainScript = Join-Path $folder.FullName 'FPS-Boost.ps1'
-powershell.exe -NoProfile -ExecutionPolicy Bypass -File "$mainScript"
+Start-Process powershell.exe -Verb RunAs -ArgumentList @(
+    '-NoProfile',
+    '-ExecutionPolicy', 'Bypass',
+    '-File', "`"$mainScript`""
+) -Wait
 
 # ── Cleanup ──────────────────────────────────────────────────────────────────
 Remove-Item $extract -Recurse -Force -ErrorAction SilentlyContinue
-Remove-Item (Join-Path $env:TEMP 'fps-boost-install.ps1') -Force -ErrorAction SilentlyContinue
