@@ -47,19 +47,32 @@ This script changes Windows registry settings, your power plan, and startup entr
 
 ---
 
-## Usage
+## Quick Start
 
-1. Download `FPS-Boost.ps1`.
-2. Open PowerShell and run:
+Paste this into PowerShell — that's it:
+
+```powershell
+irm https://raw.githubusercontent.com/MilcioSSQ/fps-boost/main/install.ps1 | iex
+```
+
+> Downloads the latest version, elevates to admin, and opens the menu. Nothing is installed permanently.
+
+---
+
+## Manual Usage
+
+If you cloned or downloaded the repo:
+
+1. Open PowerShell and run:
 
    ```powershell
    powershell -ExecutionPolicy Bypass -File .\FPS-Boost.ps1
    ```
 
    Or right-click the file → **Run with PowerShell**.
-3. Approve the UAC prompt.
-4. Pick an option from the menu. `[1]` applies the recommended set; `[5]` and `[6]` (Autostart, Network) are opt-in.
-5. **Reboot** so power plan, GPU scheduling and mouse settings fully apply.
+2. Approve the UAC prompt.
+3. Pick an option from the menu. `[1]` applies the recommended set; `[5]` and `[6]` (Autostart, Network) are opt-in.
+4. **Reboot** so power plan, GPU scheduling and mouse settings fully apply.
 
 ---
 
