@@ -52,7 +52,7 @@ Write-Host ""
 
 # ── Launch the real script ───────────────────────────────────────────────────
 $mainScript = Join-Path $folder.FullName 'FPS-Boost.ps1'
-& $mainScript
+powershell.exe -NoProfile -ExecutionPolicy Bypass -File "$mainScript"
 
 # ── Cleanup ──────────────────────────────────────────────────────────────────
 Remove-Item $extract -Recurse -Force -ErrorAction SilentlyContinue
