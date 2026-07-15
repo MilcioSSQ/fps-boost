@@ -10,7 +10,7 @@ A small, **transparent** Windows gaming optimizer that reduces input latency and
 ![PowerShell](https://img.shields.io/badge/PowerShell-5.1%2B-5391FE?logo=powershell&logoColor=white)
 ![License](https://img.shields.io/badge/license-MIT-green)
 ![Reversible](https://img.shields.io/badge/every%20change-reversible-brightgreen)
-
+   
 Most "FPS boost" scripts you find online either do nothing, break something, or ship a shady binary. This one is different on purpose:
 
 - **Everything is reversible.** Before touching anything, the original value is saved to a backup file. One menu option puts your system back exactly as it was.
