@@ -2,7 +2,7 @@
   <img src="screenshots/banner.png" alt="FPS Boost" width="100%" />
 </p>
   
-# FPS Boost
+# FPS Boost 
  
 A small, **transparent** Windows gaming optimizer that reduces input latency and background noise — without the usual "tweaker" nonsense.
 
